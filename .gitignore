@@ -1,0 +1,4 @@
+stack.yml
+*.pem
+keystore
+dashbase-license.yml

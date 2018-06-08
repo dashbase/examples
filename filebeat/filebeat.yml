@@ -1,0 +1,10 @@
+filebeat.prospectors:
+
+- type: log
+  paths: ['/nginx_sample.json']
+
+setup.template.name: "nginx_sample"
+setup.template.pattern: "nginx_sample"
+output.elasticsearch:
+  hosts: ["127.0.0.1:9200"]
+  index: "nginx_sample"

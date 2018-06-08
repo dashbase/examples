@@ -1,0 +1,21 @@
+version: 1.0
+
+dashbase_version: 0.4.0
+https: false
+
+services:
+  zookeeper:
+  api:
+  web:
+  kafka:
+  proxy:
+  kibana:
+
+tables:
+  nginx_sample: # table name
+    partitions: 1
+    stack:
+      environment:
+        KAFKA_TOPIC: nginx_sample # index name
+        MIN_BUFFER_SIZE_MB: 50
+        MAX_BUFFER_DELAY_IN_SEC: 10
