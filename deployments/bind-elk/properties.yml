@@ -4,12 +4,6 @@ dashbase_version: 0.4.0
 https: false
 
 services:
-  default:
-    stack:
-      deploy:
-        placement:
-          constraints:
-            - node.labels.core == true
   zookeeper:
   api:
   web:
@@ -24,12 +18,6 @@ services:
   kibana:
 
 tables:
-  default:
-    stack:
-      deploy:
-        placement:
-          constraints:
-            - node.labels.table == p{{.Table.Partition}}
   table: # table name
     partitions: 1
     stack:
