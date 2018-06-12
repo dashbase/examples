@@ -12,7 +12,7 @@ services:
   kibana:
 
 tables:
-  nginx_sample: # table name
+  table: # table name
     partitions: 1
     stack:
       environment:

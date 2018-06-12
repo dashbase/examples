@@ -1,0 +1,33 @@
+version: 1.0
+
+dashbase_version: 0.4.0
+https: false
+
+services:
+  zookeeper:
+  api:
+  web:
+  kafka:
+    volume:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /data/dashbase/kafka
+  proxy:
+  kibana:
+
+tables:
+  table: # table name
+    partitions: 1
+    stack:
+      environment:
+        KAFKA_TOPIC: filebeat
+        MIN_BUFFER_SIZE_MB: 50
+        MAX_BUFFER_DELAY_IN_SEC: 10
+    volume:
+      driver: local
+      driver_opts:
+        type: none
+        o: bind
+        device: /data/dashbase/table-data-p0
