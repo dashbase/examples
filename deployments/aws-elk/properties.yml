@@ -30,7 +30,7 @@ tables:
         placement:
           constraints:
             - node.labels.table == p{{.Table.Partition}}
-  table: # table name
+  nginx_sample: # table name
     partitions: 1
     stack:
       environment:
