@@ -1,0 +1,15 @@
+- key: nginx_sample
+  title: nginx_sample
+  description: nginx_sample template
+  fields:
+    - name: "agent"
+      type: text
+
+    - name: "request"
+      type: text
+
+    - name: "msg"
+      type: text
+
+    - name: "response"
+      type: integer

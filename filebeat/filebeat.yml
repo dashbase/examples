@@ -1,7 +1,13 @@
 filebeat.prospectors:
 
-- type: log
-  paths: ['/nginx_sample.json']
+- paths: ['/nginx_sample.json']
+  input_type: log
+  json.keys_under_root: true
+  json.add_error_key: true
 
+setup.template.name: "nginx_sample"
+setup.template.pattern: "nginx_sample"
+setup.template.fields: "/usr/share/filebeat/fields.yml"
 output.elasticsearch:
   hosts: ["127.0.0.1:9200"]
+  index: "nginx_sample"
