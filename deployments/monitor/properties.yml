@@ -1,0 +1,76 @@
+version: 1.0
+
+dashbase_version: 0.4.0
+https: false
+
+services:
+  default:
+    stack:
+      deploy:
+        placement:
+          constraints: [node.role == worker]
+  zookeeper:
+
+  api:
+    stack:
+      ports:
+        - 9876:9876
+      environment:
+        DASHBASE_API_OPTS: -Ddw.server.adminContextPath=/adminadmin
+
+  web:
+    stack:
+      ports:
+        - 8080:8080
+
+  kafka:
+    stack:
+      environment:
+        KAFKA_LOG_RETENTION_HOURS: 1
+        KAFKA_CREATE_TOPICS: "_logs:1:1,_metrics:1:1"
+
+  proxy:
+    stack:
+      ports:
+        - 9200:9200
+      environment:
+        DASHBASE_PROXY_OPTS: '-Ddw.parser.prefixesToTrim=fields,dropwizard.dashbase,jolokia -Ddw.server.adminContextPath=/adminadmin'
+
+  kibana:
+  grafana:
+  grafana-loader:
+
+  filebeat:
+    stack:
+      environment:
+        ES_HOSTS: https://proxy:9200
+
+  metricbeat:
+    stack:
+      environment:
+        ES_HOSTS: https://proxy:9200
+
+tables:
+  default:
+    stack:
+      deploy:
+        placement:
+          constraints: [node.role == worker]
+      ports:
+        - 7888
+      environment:
+        MIN_BUFFER_SIZE_MB: 100
+        MAX_BUFFER_DELAY_IN_SEC: 10
+        SAMPLING_STEP: 0
+
+  _logs:
+    stack:
+      environment:
+        KAFKA_TOPIC: filebeat
+
+  _metrics:
+    stack:
+      environment:
+        KAFKA_TOPIC: metricbeat
+        STORE_RAW_INPUT: "false"
+        JAVA_OPTS: -Xmx2g -Xms2g
