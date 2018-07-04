@@ -8,7 +8,9 @@ services:
     stack:
       deploy:
         placement:
-          constraints: [node.role == worker]
+          constraints:
+            - node.role == worker
+            - node.labels.monitor == true
   zookeeper:
 
   api:
@@ -55,7 +57,10 @@ tables:
     stack:
       deploy:
         placement:
-          constraints: [node.role == worker]
+          constraints: 
+            - node.role == worker
+            - node.labels.monitor == true
+
       ports:
         - 7888
       environment:
