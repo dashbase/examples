@@ -1,0 +1,14 @@
+#/bin/bash
+# 
+# Filename=ingestor 
+# Description:this file builds and runs the dockerfile to ingest data
+# Author:Shruti Jain
+# version:0.1
+# 
+
+BINDIR=/usr/local/bin
+
+$BINDIR/docker build -t dashbase/examples-producer:latest . 
+$BINDIR/docker run --net="host" dashbase/examples-producer:latest
+
+# End of script
