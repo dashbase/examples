@@ -1,6 +1,6 @@
 version: 1.0
 
-dashbase_version: 0.5.2
+dashbase_version: 0.6.0
 https: false
 
 services:
@@ -10,6 +10,7 @@ services:
   kafka:
   proxy:
   kibana:
+  elasticsearch:
 
 tables:
   nginx_sample: # table name
