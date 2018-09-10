@@ -1,0 +1,16 @@
+#!/bin/bash
+# 
+# Filename=ingestor.sh 
+# Description:this file builds and runs the dockerfile to ingest data
+# Author:Shruti Jain
+# version:0.1
+# 
+# Setting up directory variables
+BASEDIR=$(dirname "$0")
+echo $BASEDIR
+#
+# Executing Docker Image
+docker build -t dashbase/examples-producer:latest $BASEDIR
+docker run --net="host" dashbase/examples-producer:latest
+#
+# End of script
